@@ -1,0 +1,30 @@
+{
+  "name": "udpmesh",
+  "version": "1.0.0",
+  "description": "A NodeJS mesh networking package",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/nyc/bin/nyc.js --reporter=lcov --exclude=spec node_modules/jasmine/bin/jasmine.js && nyc report --reporter=text-lcov | coveralls",
+    "gendocs": "node node_modules/jsdoc/jsdoc.js lib lib/jsdoc README.md -c .jsdoc.js -d docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomdionysus/udpmesh.git"
+  },
+  "keywords": [
+    "mesh",
+    "udp"
+  ],
+  "author": "Tom Cully",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomdionysus/udpmesh/issues"
+  },
+  "homepage": "https://github.com/tomdionysus/udpmesh#readme",
+  "devDependencies": {
+    "coveralls": "^3.1.0",
+    "jasmine": "^3.5.0",
+    "jsdoc": "^3.6.4",
+    "nyc": "^15.0.1"
+  }
+}
