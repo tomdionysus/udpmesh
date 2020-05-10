@@ -1,3 +1,4 @@
+const Packet = require("../lib/Packet")
 const PingPacket = require("../lib/PingPacket")
 
 describe('PingPacket', () => {
@@ -19,7 +20,7 @@ describe('PingPacket', () => {
 
 	describe('fromBuffer', () => {
 		it('should return a PingPacket from a correct buffer',()=>{
-			var x1 = PingPacket.fromBuffer(Buffer.from([ 255, 13, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 68, 0, 128, 88, 190, 26, 246, 118, 66 ]))
+			var x1 = Packet.fromBuffer(Buffer.from([ 255, 13, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 68, 0, 128, 88, 190, 26, 246, 118, 66 ]))
 
 			expect(x1 instanceof PingPacket).toBeTruthy()
 			expect(x1.packetType).toEqual(PingPacket.ID_PING)

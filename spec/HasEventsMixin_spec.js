@@ -40,9 +40,9 @@ describe('HasEventsMixin', () => {
 		})
 	})
 
-	describe('unon', () => {
+	describe('off', () => {
 		it('should throw on bad event', () => {
-			expect(function(){x1.unon('bad',()=>{})}).toThrow('unon: no such event bad')
+			expect(function(){x1.off('bad',()=>{})}).toThrow('off: no such event bad')
 		})
 
 		it('should not remove unknown handler', () => {
@@ -53,7 +53,7 @@ describe('HasEventsMixin', () => {
 			
 			x1.on('test',cb.callback)
 			x1.on('test2',cb.callback2)
-			x1.unon('test',cb.callback2)
+			x1.off('test',cb.callback2)
 
 			expect(x1._events['test2']).toEqual([ cb.callback2 ])
 		})
@@ -66,7 +66,7 @@ describe('HasEventsMixin', () => {
 			
 			x1.on('test', cb.callback)
 			x1.on('test2', cb.callback2)
-			x1.unon('test', cb.callback)
+			x1.off('test', cb.callback)
 
 			expect(x1._events['test']).toEqual([])
 		})
@@ -101,18 +101,18 @@ describe('HasEventsMixin', () => {
 
 	describe('removeEventListener', () => {
 		it('should call on', () => {
-			spyOn(x1,'unon')
+			spyOn(x1,'off')
 
 			var cb = { callback: ()=>{} }
 
 			x1.removeEventListener('test',cb.callback)
-			expect(x1.unon).toHaveBeenCalledWith('test',cb.callback)
+			expect(x1.off).toHaveBeenCalledWith('test',cb.callback)
 		})
 	})
 
-	describe('trigger', () => {
+	describe('emit', () => {
 		it('should throw on bad event', () => {
-			expect(function(){x1.trigger('bad')}).toThrow('trigger: no such event bad')
+			expect(function(){x1.emit('bad')}).toThrow('emit: no such event bad')
 		})
 
 		it('should call valid event', () => {
@@ -123,7 +123,7 @@ describe('HasEventsMixin', () => {
 			
 			x1.on('test',cb.callback)
 			spyOn(global, 'setImmediate').and.callFake((fn)=>{f=fn})
-			x1.trigger('test',{ one:1 },2)
+			x1.emit('test',{ one:1 },2)
 
 			expect(global.setImmediate).toHaveBeenCalledWith(jasmine.any(Function))
 			f()
@@ -132,10 +132,10 @@ describe('HasEventsMixin', () => {
 	})
 
 
-	describe('trigger', () => {
+	describe('emit', () => {
 		it('should not throw on ok event that is not defined', () => {
 			x1.defineEvent('item')
-			expect(function(){x1.trigger('item')}).not.toThrow()
+			expect(function(){x1.emit('item')}).not.toThrow()
 		})
 	})
 
