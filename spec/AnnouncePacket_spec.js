@@ -17,13 +17,13 @@ describe('AnnouncePacket', () => {
 				mysql: { port: 3306 }
 			}
 
-			expect([...x1.toBuffer()]).toEqual([ 255, 13, 2, 68, 0, 128, 88, 190, 26, 246, 118, 66, 111, 34, 5, 109, 121, 115, 113, 108, 111, 34, 4, 112, 111, 114, 116, 73, 212, 51, 123, 1, 123, 1 ])
+			expect([...x1.toBuffer()]).toEqual([ 255, 13, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 68, 0, 128, 88, 190, 26, 246, 118, 66, 111, 34, 5, 109, 121, 115, 113, 108, 111, 34, 4, 112, 111, 114, 116, 73, 212, 51, 123, 1, 123, 1 ])
 		})
 	})
 
 	describe('fromBuffer', () => {
 		it('should return an AnnouncePacket from a correct buffer',()=>{
-			var x1 = Packet.fromBuffer(Buffer.from([ 255, 13, 2, 68, 0, 128, 88, 190, 26, 246, 118, 66, 111, 34, 5, 109, 121, 115, 113, 108, 111, 34, 4, 112, 111, 114, 116, 73, 212, 51, 123, 1, 123, 1 ]))
+			var x1 = Packet.fromBuffer(Buffer.from([ 255, 13, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 68, 0, 128, 88, 190, 26, 246, 118, 66, 111, 34, 5, 109, 121, 115, 113, 108, 111, 34, 4, 112, 111, 114, 116, 73, 212, 51, 123, 1, 123, 1 ]))
 
 			expect(x1 instanceof AnnouncePacket).toBeTruthy()
 			expect(x1.packetType).toEqual(Packet.ID_ANNOUNCE)
