@@ -25,6 +25,12 @@ describe('Packet', () => {
 			expect(x1.from).toEqual('e13e689304581fb2701ef1b9c5f4c581')
 		})
 
+		it('should return null from a bad header',()=>{
+			var x1 = Packet.fromBuffer(Buffer.from([63, 11, 255, 13, 255, 22, 255, 255, 15]))
+
+			expect(x1).toBeNull()
+		})
+
 		it('should return null from an incorrect buffer',()=>{
 			var x1 = Packet.fromBuffer(Buffer.from([255, 13, 255, 22, 255, 255, 15]))
 
